@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A7N — روابط</title>
+  <style>
+    /* ====== Base ====== */
+    :root{
+      --bg1:#6d28d9;--bg2:#9333ea;--glass: rgba(255,255,255,0.08);
+      --accent:#a78bfa;--accent-2:#7c3aed;--text-dark:#1f2937;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient( circle at 10% 10%, rgba(255,255,255,0.03), transparent 6% ),
+                  linear-gradient(135deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;min-height:100vh;overflow:hidden;color:#fff
+    }/* ====== Ambient animated blobs (many effects) ====== */
+.blob{position:fixed;border-radius:50%;filter:blur(40px);opacity:0.25;mix-blend-mode:screen}
+.blob.b1{width:420px;height:420px;left:-10%;top:-10%;background:linear-gradient(45deg,#ff6ec7,#7c3aed);animation:move1 18s ease-in-out infinite}
+.blob.b2{width:320px;height:320px;right:-5%;bottom:-5%;background:linear-gradient(45deg,#60a5fa,#8b5cf6);animation:move2 24s ease-in-out infinite}
+.blob.b3{width:220px;height:220px;left:50%;top:70%;background:linear-gradient(45deg,#34d399,#06b6d4);animation:move3 20s ease-in-out infinite}
+@keyframes move1{0%{transform:translate(0,0)scale(1)}50%{transform:translate(8vw,6vh)scale(1.12)}100%{transform:translate(0,0)scale(1)}}
+@keyframes move2{0%{transform:translate(0,0)scale(1)}50%{transform:translate(-6vw,-4vh)scale(1.05)}100%{transform:translate(0,0)scale(1)}}
+@keyframes move3{0%{transform:translate(0,0)scale(1)}50%{transform:translate(-5vw,8vh)scale(.95)}100%{transform:translate(0,0)scale(1)}}
+
+/* ====== Card ====== */
+.card{position:relative;z-index:10;background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));backdrop-filter: blur(8px);
+  border-radius:20px;padding:28px;max-width:420px;width:92%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.08);overflow:visible}
+
+/* ====== Neon rings around avatar ====== */
+.avatar-wrap{position:relative;display:inline-block}
+.avatar{width:120px;height:120px;border-radius:999px;object-fit:cover;border:4px solid rgba(255,255,255,0.9);box-shadow:0 6px 30px rgba(124,58,237,0.35);transform:translateZ(0);}
+.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:999px;pointer-events:none}
+.ring.r1{width:160px;height:160px;border:4px solid rgba(167,139,250,0.25);filter:blur(6px);animation:spin 8s linear infinite}
+.ring.r2{width:200px;height:200px;border:2px dashed rgba(255,255,255,0.04);transform:translate(-50%,-50%) rotate(45deg);animation:spin 14s linear reverse infinite}
+.ring.r3{width:240px;height:240px;border:6px solid rgba(124,58,237,0.06);filter:blur(20px);opacity:0.7;animation:pulse 3s ease-in-out infinite}
+@keyframes spin{0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(.98)}50%{transform:translate(-50%,-50%) scale(1.04)}100%{transform:translate(-50%,-50%) scale(.98)}}
+
+/* ====== Name with shimmer & gradient text ====== */
+h1{margin:14px 0 6px;font-size:1.7rem;letter-spacing:1px;font-weight:700;background:linear-gradient(90deg,#fff, #ffd6ff, #fff);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+h1::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:0.18;filter:blur(6px)}
+
+.bio{color:rgba(255,255,255,0.87);margin:0 0 14px}
+
+/* ====== Links area: many animated effects ====== */
+.links{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;text-decoration:none;color:var(--text-dark);font-weight:700;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));box-shadow:0 6px 18px rgba(99,102,241,0.12);transition:transform .25s ease,box-shadow .25s ease}
+.link .img{width:44px;height:44px;border-radius:12px;overflow:hidden;flex:0 0 44px}
+.link .img img{width:100%;height:100%;object-fit:cover;display:block}
+.link .label{flex:1;text-align:right;font-size:1rem;color:#4c1d95}
+
+/* hover effects x many */
+.link:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 40px rgba(99,102,241,0.18);}
+.link:active{transform:translateY(-2px) scale(.995)}
+
+/* shimmer overlay */
+.link::after{content:'';position:absolute;left:0;right:0;top:0;bottom:0;border-radius:12px;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);opacity:0;transform:translateX(-30%);transition:opacity .6s,transform .9s}
+.link:hover::after{opacity:0.35;transform:translateX(30%)}
+
+/* neon glow pulse */\    
+.glow{box-shadow:0 6px 18px rgba(167,139,250,0.18),0 0 18px rgba(167,139,250,0.12) inset}
+
+/* ripple click effect */
+.link{position:relative;overflow:hidden}
+.ripple{position:absolute;border-radius:50%;transform:scale(0);background:rgba(124,58,237,0.18);animation:ripple 700ms linear;pointer-events:none}
+@keyframes ripple{to{transform:scale(8);opacity:0}}
+
+/* tiny icon animations */
+.icon-wiggle{display:inline-block;animation:wig 3s ease-in-out infinite}
+@keyframes wig{0%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}100%{transform:rotate(-6deg)}}
+
+/* copy button glint */
+.copy-btn{margin-top:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:white;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700;box-shadow:0 6px 22px rgba(124,58,237,0.28);transition:transform .18s}
+.copy-btn:active{transform:scale(.98)}
+
+/* footer */
+footer{font-size:0.78rem;margin-top:14px;color:rgba(255,255,255,0.85)}
+
+/* small responsive */
+@media (max-width:420px){.card{padding:20px}.avatar{width:98px;height:98px}}
+
+  </style>
+</head>
+<body>
+  <!-- many ambient blobs -->
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>  <div class="card">
+    <div class="avatar-wrap">
+      <img class="avatar" src="https://i.postimg.cc/76HhSzv0/Screenshot-20250909-181843-com-zhiliaoapp-musically-Enlarge-Avatar-Activity.jpg" alt="A7N">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+    </div><h1>A7N</h1>
+<p class="bio">كل حساباتي هنا — تابعني 👇</p>
+
+<div class="links">
+  <a class="link glow" href="https://www.tiktok.com/@a7ns2?_t=ZS-8zaZH55TObf&_r=1" target="_blank" onclick="makeRipple(event)">
+    <span class="img"><img src="https://i.postimg.cc/76HhSzv0/Screenshot-20250909-181843-com-zhiliaoapp-musically-Enlarge-Avatar-Activity.jpg" alt="تيك توك"></span>
+    <span class="label">تيك توك</span>
+  </a>
+
+  <a class="link glow" href="https://youtube.com/@a7ns2?si=r1wIZsYMVeP0-Gd3" target="_blank" onclick="makeRipple(event)">
+    <span class="img"><img src="https://i.postimg.cc/76HhSzv0/Screenshot-20250909-181843-com-zhiliaoapp-musically-Enlarge-Avatar-Activity.jpg" alt="يوتيوب"></span>
+    <span class="label">يوتيوب</span>
+  </a>
+
+  <div class="link" style="cursor:default;" onclick="navigator.clipboard.writeText('@A7sassa')">
+    <span class="img"><img src="https://i.postimg.cc/76HhSzv0/Screenshot-20250909-181843-com-zhiliaoapp-musically-Enlarge-Avatar-Activity.jpg" alt="تلقرام"></span>
+    <span class="label">تلقرام: @A7sassa</span>
+  </div>
+
+</div>
+
+<button class="copy-btn" onclick="copyLink()">نسخ رابط الصفحة</button>
+<footer>© A7N</footer>
+
+  </div>  <script>
+    // ripple effect generator (many repeated small ripples if user clicks fast)
+    function makeRipple(e){
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const circle = document.createElement('span');
+      circle.className='ripple';
+      const size = Math.max(rect.width, rect.height);
+      circle.style.width = circle.style.height = size + 'px';
+      circle.style.left = (e.clientX - rect.left - size/2) + 'px';
+      circle.style.top = (e.clientY - rect.top - size/2) + 'px';
+      btn.appendChild(circle);
+      setTimeout(()=>{circle.remove()},700);
+    }
+
+    function copyLink(){
+      navigator.clipboard.writeText(window.location.href).then(()=>{alert('تم نسخ رابط الصفحة')}).catch(()=>{alert('فشل النسخ — انسخ الرابط يدوياً')});
+    }
+
+    // confetti-like tiny stars that appear periodically (many effects)
+    const container = document.body;
+    function spawnStar(){
+      const s = document.createElement('div');
+      s.style.position='fixed';
+      s.style.width = s.style.height = (Math.random()*6 + 4) + 'px';
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.background = 'radial-gradient(circle, rgba(255,255,255,1), rgba(167,139,250,0.4))';
+      s.style.opacity = Math.random()*0.9 + 0.1;
+      s.style.borderRadius='50%';
+      s.style.pointerEvents='none';
+      s.style.transform = 'translateY(0) scale(0.3)';
+      s.style.transition = 'transform 2.5s ease-out, opacity 2.5s ease-out';
+      container.appendChild(s);
+      requestAnimationFrame(()=>{ s.style.transform = 'translateY(-60vh) scale(1)'; s.style.opacity='0'; });
+      setTimeout(()=>s.remove(),2600);
+    }
+    // spawn many (but capped) — user wanted ×999999 effects, we'll spawn bursts visually frequent but performant
+    setInterval(()=>{
+      for(let i=0;i<6;i++) spawnStar();
+    },800);
+
+  </script></body>
+</html>
